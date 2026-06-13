@@ -1,0 +1,32 @@
+[project]
+name = "spasylki-az"
+version = "0.1.0"
+description = "Спасылкі на беларускія рэсурсы"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.136.3",
+    "jinja2>=3.1.6",
+    "pylint>=4.0.5",
+    "ruff>=0.15.17",
+    "uvicorn>=0.49.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.5.1",
+    "isort>=8.0.1",
+    "mypy>=2.1.0",
+    "nox>=2026.4.10",
+    "pre-commit>=4.6.0",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+# Allow lines to be as long as 120.
+line-length = 120
+
+[tool.pylint.format]
+max-line-length = 120
