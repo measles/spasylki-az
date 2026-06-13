@@ -6,6 +6,10 @@ dist/
 wheels/
 *.egg-info
 
+# Cach
+.mypy_cache
+.ruff_cache
+
 # Virtual environments
 .venv
 .nox
