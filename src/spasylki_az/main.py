@@ -20,12 +20,27 @@ You should have received a copy of the GNU Lesser General Public License v3
 :copyright: (c) 2026 Andrej Zacharevicz: https://github.com/measles/spasylki-az
 """
 
-from fastapi import FastAPI
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+# pylint: disable-next=import-error
+from data.links import SECTIONS  # type: ignore[import-not-found]
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
+# These are ONLY executed by the type checker
+if TYPE_CHECKING:
+    from starlette.templating import _TemplateResponse as TemplateResponse
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/")
-def read_root() -> dict[str, str]:
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request) -> TemplateResponse:
     """Read root."""
-    return {"Hello": "World"}
+    return templates.TemplateResponse(
+        request=request, name="index.jinja2", context={"links": SECTIONS}
+    )

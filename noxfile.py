@@ -60,6 +60,8 @@ def run(session: nox.Session) -> None:
         CONTAINER_ENGINE,
         "run",
         "-it",
+        "-v",
+        f"{os.path.abspath("src/spasylki_az")}:/app",
         "-p",
         "8080:8080",
         "--env",
